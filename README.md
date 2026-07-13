@@ -19,7 +19,7 @@ The **Subject Score Calculator** eliminates the guesswork and eases pre-exam pre
 * **Dynamic Weighting:** Easily add multiple assessments and assign custom percentage weights.
 * **"What-If" Analysis:** Input hypothetical scores for future exams to see how they impact your final grade.
 * **Target Grade Predictor:** Instantly calculates the exact score needed on remaining tasks to pass (or hit distinction targets).
-* **Responsive Design:** Check your grades on the go via desktop, tablet, or mobile.
+* **Responsive Design:** Check your grades on the go via desktop, tablet, or *mobile (in progress)*.
 
 ---
 
