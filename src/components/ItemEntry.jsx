@@ -1,5 +1,6 @@
 import Buttons from "./Buttons";
-import { Inputs } from "./InputField";
+import { Inputs, Checkbox } from "./InputField";
+import { ImBin } from "react-icons/im";
 
 export default function ItemEntry({ item, actualScore, onChange, onRemove, canRemove }) {
   return (
@@ -10,11 +11,10 @@ export default function ItemEntry({ item, actualScore, onChange, onRemove, canRe
         onChange={(event) => onChange("name", event.target.value)}
       />
       <div className="flex h-full min-h-10 items-center justify-center">
-        <input
-          type="checkbox"
-          className="h-8 w-8 rounded border-gray-100 accent-blue-500"
+        <Checkbox
           checked={item.hurdleTask}
           onChange={(event) => onChange("hurdleTask", event.target.checked)}
+          className="h-8 w-8"
         />
       </div>
       <Inputs
@@ -44,8 +44,7 @@ export default function ItemEntry({ item, actualScore, onChange, onRemove, canRe
         onClick={onRemove}
         disabled={!canRemove}
         buttonColor="bg-red-500 hover:bg-red-600"
-        content="Remove"
-      />
+      ><ImBin /></Buttons>
     </>
   )
 }

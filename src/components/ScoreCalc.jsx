@@ -4,7 +4,7 @@ import { Inputs } from './InputField'
 import ItemEntry from './ItemEntry'
 import Buttons from './Buttons'
 import { GRID_COLS } from '../config/constant'
-import Notes from './Notes'
+import AlertsMsg from './AlertsMsg'
 
 const createItem = () => ({
     id: crypto.randomUUID(),
@@ -172,14 +172,14 @@ export default function ScoreCalc() {
                             }))
                         }
                     />
-                    <div className={`mt-4 grid ${GRID_COLS} gap-2 `}>
+                    <div className={`mt-4 grid ${GRID_COLS} gap-2 items-center text-sm`}>
                         <p>Assessment Item</p>
                         <p className={`text-center`}>Hurdle Task</p>
                         <p>Weighting %</p>
                         <p>Score</p>
                         <p>Max Score</p>
                         <p>Actual Score (%)</p>
-                        <p>Actions</p>
+                        <p></p>
                         {items.map((item) => (
                             <ItemEntry
                                 key={item.id}
@@ -196,14 +196,11 @@ export default function ScoreCalc() {
                             type="button"
                             onClick={addItem}
                             buttonColor="bg-blue-500 hover:bg-blue-600"
-                            content="Add Item"
-                        />
+                        >Add Item</Buttons>
                         <Buttons
                             type="button"
                             onClick={resetForm}
-                            buttonColor="bg-slate-500 hover:bg-slate-600"
-                            content="Reset Form"
-                        />
+                            buttonColor="bg-slate-500 hover:bg-slate-600">Reset Form</Buttons>
                     </div>
                 </div>
 
@@ -212,18 +209,16 @@ export default function ScoreCalc() {
                     <p>Total Actual Score (%): {totals.finalScore.toFixed(0)}</p>
                     <p>Grade: {totals.weighting == 100 ? gradeFromScore(totals.finalScore) : "Calculating"}</p>
                 </div>
-                {totals.failedHurdle && totals.actualScore >= 45 && (
-                    <p className="mt-4 rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800">
-                        A hurdle task is below 40%, so the final score is capped at 45%.
-                        Raw total: {totals.actualScore.toFixed(0)}%.
-                    </p>
-                )}
+                {totals.failedHurdle && totals.actualScore >= 45 &&
+                    (<AlertsMsg
+                        color="text-red-800"
+                        message={`A hurdle task is below 40%, so the final score is capped at 45%. Raw total: ${totals.actualScore.toFixed(0)}%.`}
+                    />)}
                 {hasWeightingWarning && (
-                    <p className="mt-4 rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-800">
-                        Total weighting must equal 100%. Current total is {totals.weighting.toFixed(2)}%.
-                    </p>
-                )}
-                <Notes />
+                    <AlertsMsg
+                        color="text-amber-800"
+                        message={`Total weighting must equal 100%. Current total is ${totals.weighting.toFixed(2)}%.`}
+                    />)}
             </div>
         </>
     )

@@ -1,4 +1,5 @@
-// import React from 'react'
+import { INPUT_STYLE } from "../config/constant";
+
 
 export function Label({ label }) {
     return (
@@ -12,12 +13,29 @@ export function Label({ label }) {
     )
 }
 
+export function Checkbox({ label, checked, onChange, ...props }) {
+    return (
+        <> 
+            <div className="flex items-center gap-2">
+                {label && <Label label={label} />}
+                <input
+                    type="checkbox"
+                    checked={checked}
+                    onChange={onChange}
+                    className={`${INPUT_STYLE}`} {...props}
+                />
+            </div>
+        </>
+    )
+}
+        
+
 export function Dropdown({ label, value, onChange, children }) {
     return (
         <>
             <div className="flex flex-col gap-1">
                 {label && <Label label={label} />}
-                <select name="category" value={value} onChange={onChange} className="mb-2 w-full rounded border bg-slate-100 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500  px-2 py-2">
+                <select name="category" value={value} onChange={onChange} className={`px-3 py-2 w-full ${INPUT_STYLE}`}>
                     {children}
                 </select>
             </div>
@@ -32,7 +50,7 @@ export function Textarea({ label, ...props }) {
                 {label && <Label label={label} />}
                 <textarea
                     placeholder="Content (Markdown supported)"
-                    className="min-h-50 rounded-md border border-gray-300 px-3 py-2 bg-slate-100 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className={`min-h-50 px-3 py-2 w-full ${INPUT_STYLE}`}
                     {...props}
                 />
             </div>
@@ -47,7 +65,7 @@ export function Inputs({ label, ...props }) {
             <div className="flex flex-col gap-1">
                 {label && <Label label={label} />}
                 <input
-                    className="px-3 py-2 border border-gray-300 rounded-md bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className={`px-3 py-2 w-full ${INPUT_STYLE}`}
                     {...props}
                 />
             </div>
