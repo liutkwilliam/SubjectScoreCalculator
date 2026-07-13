@@ -6,9 +6,11 @@
   "homepage": "https://liutkwing.github.io/subjectscorecalculator",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "build": "vite build && node -e \"require('fs').copyFileSync('dist/index.html', 'dist/404.html')\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -a"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",
