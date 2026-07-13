@@ -204,10 +204,10 @@ export default function ScoreCalc() {
                     </div>
                 </div>
 
-                <div className={`grid grid-cols-3 gap-2`}>
+                <div className={`grid grid-cols-3 gap-2 py-2`}>
                     <p>Total Weighting (%): {totals.weighting.toFixed(0)}</p>
-                    <p>Total Actual Score (%): {totals.finalScore.toFixed(0)}</p>
-                    <p>Grade: {totals.weighting == 100 ? gradeFromScore(totals.finalScore) : "Calculating"}</p>
+                    <p>Total Actual Score (%): <span className='font-bold'>{totals.finalScore.toFixed(0)}</span></p>
+                    <p>Grade: {totals.weighting == 100 ? <span className='font-bold'>{gradeFromScore(totals.finalScore)}</span> : <span className='font-bold text-red-500'>{"Please complete empty field(s)."}</span>}</p>
                 </div>
                 {totals.failedHurdle && totals.actualScore >= 45 &&
                     (<AlertsMsg
